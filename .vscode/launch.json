@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ContentCalendarApplication<content-calendar>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "dev.fullstackcoder.content_calendar.ContentCalendarApplication",
+            "projectName": "content-calendar",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

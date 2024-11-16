@@ -1,0 +1,13 @@
+PUT http://localhost:8080/api/content/4 HTTP/1.1
+content-type: application/json
+
+  {
+    "id": 4,
+    "title": "Updated Fourth Content",
+    "description": "This is the updated forth content",
+    "status": "IDEA",
+    "contentType": "ARTICLE",
+    "dateCreated": "2024-11-16T14:01:54.4706256",
+    "dateUpdated": "2024-11-16T14:01:54.4706256",
+    "url": "https://www.google.com"
+  }
