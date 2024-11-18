@@ -22,7 +22,6 @@ onMounted(async () => {
     try {
         const response = await axios.get('http://localhost:5000/api/content');
         state.content = response.data;
-        console.log(response.data);
     } catch (error) {
         console.error('Error fetching content', error);
      } finally {

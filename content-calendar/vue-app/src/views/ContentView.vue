@@ -53,12 +53,15 @@ onMounted(async () => {
             <div class="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
                 <main>
                     <div class="bg-white p-6 rounded-lg shadow-md text-center md:text-lef">
-                        <div class="bg-text-gray-500 mb-4">
-                            Content Type: {{ state.content.contentType }}
+                        <h1 class="bg-white text-3x1 text-green-500 font-bold mb-4">{{ state.content.title }}</h1>
+                        <div class="text-green-500 mb-4">
+                            {{ state.content.contentType }}
                         </div>
-                        <h1>Title: {{ state.content.title }}</h1>
-                        <div class="mb-5">
-                            Description: {{ state.content.description }}
+                        <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+                            <h3 class="text-green-800 text-lg fond-bold mb-6">Description</h3>
+                            <p class="mb-4">
+                                {{ state.content.description }}
+                            </p>                            
                         </div>
                         <div class="mb-5">
                             URL: {{ state.content.url }}
@@ -69,10 +72,10 @@ onMounted(async () => {
                         <div class="mb-5">
                             Updated: {{ moment(state.content.dateUpdated).format('LLL') }}
                         </div>
-
+                        <div class="mb-5">
+                            Status: {{ state.content.status }}
+                        </div>
                     </div>
-
-
                 </main>
                 <aside>
                     <div class="bg-white p-6 rounded-lg shadow-md mt-6">
