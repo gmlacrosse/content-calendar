@@ -23,7 +23,6 @@ const router = createRouter({
       path: '/content/:id',
       name: 'content',
       component: ContentView,
-      props: true
     },
     {
       path: '/content/add',
@@ -33,8 +32,7 @@ const router = createRouter({
     {
       path: '/content/edit/:id',
       name: 'edit-content',
-      component: EditContentView,
-      props: true
+      component: EditContentView
     },
     {
       path: '/:catchAll(.*)',

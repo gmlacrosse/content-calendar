@@ -5,5 +5,5 @@ import Hero from '@/components/Hero.vue';
 
 <template>
   <Hero />
-  <ContentListings limit="3", showButton="true"/>
+  <ContentListings :limit="3" :showButton="true" />
 </template>
