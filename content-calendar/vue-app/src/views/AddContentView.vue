@@ -1,14 +1,9 @@
 <script setup>
 import router from '@/router';
 import { reactive } from 'vue';
-import { useRoute } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import axios from 'axios';
 import BackButton from '@/components/BackButton.vue';
-
-const route = useRoute();
-
-const contentId = route.params.id;
 
 const form = reactive({
     contentType: '',
@@ -31,7 +26,7 @@ const handleSubmit = async () => {
     try {
         const response = await axios.post(`http://localhost:5000/api/content`, addContent);
         toast.success("Added")
-        router.push(`/content`);
+        router.push(`/content/${response.data.id}`);
     } catch (error) {
         console.error(error);
         toast.error("Not updated");
