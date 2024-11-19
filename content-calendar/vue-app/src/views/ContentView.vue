@@ -18,11 +18,16 @@ const state = reactive({
     isLoading: true,
 });
 
+
+const API_ENDPOINTS = {
+    CONTENT: 'http://localhost:5000/api/content/',
+};
+
 const deleteContent = async () => {
     try {
         const confirm = window.confirm('Are you sure?');
         if (confirm) {
-            await axios.delete(`http://localhost:5000/api/content/${contentId}`);
+            await axios.delete(`${API_ENDPOINTS.CONTENT}/${contentId}`);
             toast.success("Deleted");
             router.push('/content');
         }
@@ -32,10 +37,6 @@ const deleteContent = async () => {
         toast.error("Not Deleted");
     }
 }
-
-const API_ENDPOINTS = {
-    CONTENT: 'http://localhost:5000/api/content/',
-};
 
 onMounted(async () => {
     try {
