@@ -3,12 +3,11 @@ POST http://localhost:5000/api/content HTTP/1.1
 content-type: application/json
 
   {
-    "id": 5,
-    "title": "Fith Content",
+    "title": "Sixth Content",
     "description": "This is the fith content",
     "status": "IDEA",
     "contentType": "ARTICLE",
-    "dateCreated": "2024-11-16T14:01:54.4706256",
+    "dateCreated": "2021-09-01T00:00:00Z",
     "dateUpdated": null,
     "url": "https://www.google.com"
   }

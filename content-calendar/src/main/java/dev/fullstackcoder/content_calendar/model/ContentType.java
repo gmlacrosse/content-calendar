@@ -1,6 +1,6 @@
 package dev.fullstackcoder.content_calendar.model;
 
-public enum Type {
+public enum ContentType {
     ARTICLE,
     VIDEO,
     PODCAST,

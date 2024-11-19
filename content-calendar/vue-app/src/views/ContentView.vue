@@ -69,7 +69,7 @@ onMounted(async () => {
                         <div class="mb-5">
                             Created: {{ moment(state.content.dateCreated).format('LLL') }}
                         </div>
-                        <div class="mb-5">
+                        <div v-if="state.content.dateUpdated" class="mb-5">
                             Updated: {{ moment(state.content.dateUpdated).format('LLL') }}
                         </div>
                         <div class="mb-5">

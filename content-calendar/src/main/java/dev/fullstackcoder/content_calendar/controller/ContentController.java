@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import dev.fullstackcoder.content_calendar.data.ContentCollectionRepository;
 import dev.fullstackcoder.content_calendar.model.Content;
+import dev.fullstackcoder.content_calendar.service.IContentService;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -22,20 +24,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ContentController {
 
-    private final ContentCollectionRepository contentCollectionRepository;
+    private final IContentService contentService;
 
-    public ContentController(ContentCollectionRepository contentCollectionRepository) {
-        this.contentCollectionRepository = contentCollectionRepository;
+    public ContentController(IContentService contentService) {
+        super();
+        this.contentService = contentService;
     }
 
     @GetMapping("")
     public List<Content> getAllContent() {
-        return contentCollectionRepository.getAllContent();
+        return contentService.getAllContent();
     }
     
     @GetMapping("/{id}")
-    public Content getContentById(@PathVariable Integer id) {
-        Content content = contentCollectionRepository.getContentById(id);
+    public Content getContentById(@PathVariable Long id) {
+        Content content = contentService.getContentById(id);
         if (content == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found");
         }
@@ -44,27 +47,27 @@ public class ContentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Content addContent(@RequestBody Content content) {
-        contentCollectionRepository.addContent(content);
+    public Content addContent(@Valid @RequestBody Content content) {
+        contentService.addContent(content);
         return content;
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void putMethodName(@PathVariable Integer id, @RequestBody Content content) {
-        if (contentCollectionRepository.getContentById(id) == null) {
+    public void putMethodName(@Valid @PathVariable Long id, @RequestBody Content content) {
+        if (contentService.getContentById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found");
         }   
-        contentCollectionRepository.updateContent(content);
+        contentService.updateContent(content);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void deleteContent(@PathVariable Integer id) {
-        if (contentCollectionRepository.getContentById(id) == null) {
+    public void deleteContent(@PathVariable Long id) {
+        if (contentService.getContentById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found");
         }
-        contentCollectionRepository.deleteContent(id);
+        contentService.deleteContent(id);
     }
 
     @GetMapping("/status")

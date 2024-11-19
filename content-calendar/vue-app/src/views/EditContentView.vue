@@ -14,7 +14,9 @@ const form = reactive({
     contentType: '',
     status: '',
     description: '',
-    url: ''
+    url: '',
+    dateCreated: null,
+    dateUpdated: null
 });
 
 const state = reactive({
@@ -26,11 +28,14 @@ const toast = useToast();
 
 const handleSubmit = async () => {
     const updateContent = {
+        id: form.id,
         title: form.title,
-        description: form.description,
-        status: form.status,
-        type: form.contentType,
-        dateUpdated: new Date()
+        description: form.description ?? "",
+        status: form.status ?? "IDEA",
+        contentType: form.contentType ?? "ARTICLE",
+        dateCreated: form.dateCreated ?? new Date(),
+        dateUpdated: new Date(),
+        url: form.url ?? "",
     }
 
     try {
@@ -78,6 +83,12 @@ onMounted(async () => {
                         <label for="description">Description</label>
                         <textarea id="description" v-model="form.description" class="border rounded w-full py-2 px-3"
                             rows="4" placeholder="Add full Description"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="url">URL</label>
+                        <input id="url" v-model="form.url" class="border rounded w-full py-2 px-3"
+                            rows="4" placeholder="https://yoursite.com"></input>
                     </div>
                     <div class="mb-4">
 

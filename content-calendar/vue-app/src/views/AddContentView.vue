@@ -17,10 +17,12 @@ const toast = useToast();
 const handleSubmit = async () => {
     const addContent = {
         title: form.title,
-        description: form.description,
-        status: form.status,
-        type: form.contentType,
-        dateUpdated: new Date()
+        description: form.description ?? "",
+        status: form.status ?? "IDEA",
+        contentType: form.contentType ?? "ARTICLE",
+        dateCreated: form.dateCreated ?? new Date(),
+        dateUpdated: null,
+        url: form.url ?? "",
     }
 
     try {
