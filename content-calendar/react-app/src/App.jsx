@@ -11,7 +11,7 @@ import axios from 'axios';
 const App = () => {
 
   const API_ENDPOINTS = {
-    CONTENT: '/api/content/',
+    CONTENT: 'http://localhost:5000/api/content/',
   };
 
   const addContent = async (addContent) => {
@@ -67,12 +67,7 @@ const App = () => {
         <Route
           path='/content/:id'
           element={<ContentPage
-            deleteContent={deleteContent}
-            loader={async ({ params }) => {
-              const { id } = params;
-              const response = await fetch(`${API_ENDPOINTS.CONTENT}/${id}`);
-              return response.json();
-            }} />} />
+            deleteContent={deleteContent} />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
     )

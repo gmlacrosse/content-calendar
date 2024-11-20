@@ -1,11 +1,16 @@
-import { useLoaderData, useNavigate, NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import axios from 'axios';
 
-const ContentPage = (deleteContent) => {
+const ContentPage = ({ deleteContent }) => {
     const navigate = useNavigate();
-    // const { id } = useParams();
-    const content = useLoaderData();
+    const { id } = useParams();
+
+    const [content, setContent] = useState({});
 
     const onDeleteClick = (contentId) => {
         const confirm = window.confirm(
@@ -21,6 +26,22 @@ const ContentPage = (deleteContent) => {
         navigate('/content');
     };
 
+    useEffect(() => {
+        const fetchContent = async () => {
+            const API_ENDPOINTS = {
+                CONTENT: `http://localhost:5000/api/content/${id}`,
+            };
+            const apiUrl = `${API_ENDPOINTS.CONTENT}`
+            try {
+                const response = await axios.get(apiUrl);
+                const data = await response.data;
+                setContent(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchContent();
+    }, [id]);
     return (
         <>
             <section>
@@ -71,15 +92,8 @@ const ContentPage = (deleteContent) => {
     )
 }
 
-// const contentLoader = async ({ params }) => {
-//     try {
-//         const res = await fetch(`http://localhost:5000/api/content/${params.id}}`);
-//         const data = await res.json();
-//         return data;
-//     } catch (error) {
-//         console.error(error);        
-//     }
-// };
+ContentPage.propTypes = {
+    deleteContent: PropTypes.func.isRequired,
+};
 
-// export { ContentPage as default, contentLoader };
 export default ContentPage;
