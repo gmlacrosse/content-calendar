@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/content")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin()
 public class ContentController {
 
     private final IContentService contentService;

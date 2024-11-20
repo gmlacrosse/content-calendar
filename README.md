@@ -1,1 +1,3 @@
-This is a DEMO project for Spring Boot 3 and Vue 3
+This is a DEMO project for Spring Boot and Vue.
+
+It uses a MySQL Database.
