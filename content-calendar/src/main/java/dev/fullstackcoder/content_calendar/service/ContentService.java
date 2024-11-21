@@ -1,5 +1,6 @@
 package dev.fullstackcoder.content_calendar.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class ContentService implements IContentService {
     @Override
     public Content addContent(Content content) {
         try {
+            content.setDateCreated(LocalDateTime.now());
             return contentRepository.save(content);
         } catch (Exception e) {
             e.printStackTrace();

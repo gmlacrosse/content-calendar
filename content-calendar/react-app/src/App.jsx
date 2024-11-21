@@ -11,38 +11,15 @@ import axios from 'axios';
 const App = () => {
 
   const API_ENDPOINTS = {
-    CONTENT: 'http://localhost:5000/api/content/',
-  };
-
-  const addContent = async (addContent) => {
-    try {
-      const response = await axios.post(`${API_ENDPOINTS.CONTENT}`, addContent);
-      console.log(response);
-      router.push(`/content`);
-    } catch (error) {
-      console.error(error);
-    }
-    return;
+    CONTENT: 'http://localhost:5000/api/content',
   };
 
   const deleteContent = async (id) => {
     try {
       await axios.delete(`${API_ENDPOINTS.CONTENT}/${id}`);
-      router.push('/content');
     }
     catch (error) {
       console.log(error);
-    }
-    return;
-  }
-
-  const updateContent = async (updateContent) => {
-    try {
-      const response = await axios.put(`${API_ENDPOINTS.CONTENT}/${updateContent.id}`, updateContent);
-      console.log(response);
-      router.push(`/content/${updateContent.id}`);
-    } catch (error) {
-      console.error(error);
     }
     return;
   }
@@ -54,16 +31,10 @@ const App = () => {
         <Route path='/content' element={<ContentsPage />} />
         <Route
           path='/add-content'
-          element={<AddContentPage addContentSubmit={addContent} />} />
+          element={<AddContentPage />} />
         <Route
           path='/edit-content/:id'
-          element={<EditContentPage
-            updateContentSubmit={updateContent}
-            loader={async ({ params }) => {
-              const { id } = params;
-              const response = await fetch(`${API_ENDPOINTS.CONTENT}/${id}`);
-              return response.json();
-            }} />} />
+          element={<EditContentPage />} />
         <Route
           path='/content/:id'
           element={<ContentPage
