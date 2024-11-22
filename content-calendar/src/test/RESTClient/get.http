@@ -1,1 +1,1 @@
-GET http://localhost:5000/api/content
+GET http://localhost:5000/api/content?limit=3
