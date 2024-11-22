@@ -25,6 +25,19 @@ public class ContentService implements IContentService {
     }
 
     @Override
+    public List<Content> getContent(int limit, int offset) {
+        try {
+            List<Content> contents = contentRepository.getContent();
+            int max = limit > contents.size() ? contents.size() : limit;
+            List<Content> pagedContents = contents.subList(offset, max);
+            return pagedContents;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Content getContentById(Long id) {
         try {
             return contentRepository.findById(id).orElse(null);

@@ -8,6 +8,8 @@ public interface IContentService {
 
     List<Content> getAllContent();
 
+    List<Content> getContent(int limit, int offset);
+    
     Content getContentById(Long id);
 
     Content addContent(Content content);
